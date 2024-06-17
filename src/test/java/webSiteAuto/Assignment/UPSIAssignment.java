@@ -13,18 +13,12 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class UPSIAssignment {
-	public static WebDriverWait wait;
-	public static WebDriver driver;
+public class UPSIAssignment extends UtilClass
+{
 
 	@Test
 	public static void LoginMethod() throws InterruptedException {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.get("https://staging.digicompany.in/#/login");
-		driver.manage().window().maximize();
-		wait = new WebDriverWait(driver, Duration.ofSeconds(7));
-
+		
 		String email = "amit@parikhgroup.com";
 		String password = "Sneha@123";
 
@@ -50,33 +44,21 @@ public class UPSIAssignment {
 		String Recipient = "Mr. Parikh sec";
 		String RecipientEmail = "test@test.in";
 		String UPSI_Nature = "Financial Audit";
+		
 
 		// Adding Sharer
 		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='upsiSharer']/../label")).click();
 		AddingSharerAndRecipient(Sharer, SharerEmail, true);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='sharerNonGovevaUserList_filter']//input"))).sendKeys(SharerEmail);
-//		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), Sharer));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
-//		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
+
 
 		// Adding Recipient
 		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='govevaUser1']/../label")).click();
-		AddingSharerAndRecipient(Recipient, RecipientEmail, false);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='recipientNonGovevaUserList_filter']//input"))).sendKeys(RecipientEmail);
-//		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), Recipient));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
-//		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
-		
-		
+		AddingSharerAndRecipient(Recipient, RecipientEmail, false);	
 		Select UPSI_Nature_dropdown = new Select(driver.findElement(By.id("NatureId")));
 		UPSI_Nature_dropdown.selectByVisibleText(UPSI_Nature);
 
-
 	}
 	
-
 	public static void AddingSharerAndRecipient(String name, String email, Boolean sender) {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
 		if (sender) {
@@ -87,6 +69,19 @@ public class UPSIAssignment {
 		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), name));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
 		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
+		
+		//calling placeholder method
+		Placeholder();
+	}
+	
+	public static void Placeholder() 
+	{
+		String Placeholder1="Adding details in first placeholder";
+		String Placeholder2="Adding details in second placeholder";
+		String Placeholder3="Adding details in third placeholder";
+		driver.findElement(By.xpath("(//textarea[contains(@class, ng-pristine)])[1]")).sendKeys(Placeholder1);
+		driver.findElement(By.xpath("(//textarea[contains(@class, ng-pristine)])[2]")).sendKeys(Placeholder2);
+		driver.findElement(By.xpath("(//textarea[contains(@class, form-control)])[5]")).sendKeys(Placeholder3);
 	}
 
 }
