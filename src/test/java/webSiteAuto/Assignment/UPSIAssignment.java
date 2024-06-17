@@ -14,64 +14,79 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class UPSIAssignment {
-	
-	
-	
+	public static WebDriverWait wait;
+	public static WebDriver driver;
+
 	@Test
-	public void LoginMethod() throws InterruptedException
-	{
+	public static void LoginMethod() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
-		WebDriver driver=new ChromeDriver();
+		driver = new ChromeDriver();
 		driver.get("https://staging.digicompany.in/#/login");
 		driver.manage().window().maximize();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@name='Email']")).sendKeys("amit@parikhgroup.com");
-		driver.findElement(By.xpath("//div[@aria-haspopup='listbox']")).click();	
-		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(7));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+
+		String email = "amit@parikhgroup.com";
+		String password = "Sneha@123";
+
+		// Login Process
+		driver.findElement(By.xpath("//input[@name='Email']")).sendKeys(email);
+		driver.findElement(By.xpath("//div[@aria-haspopup='listbox']")).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@ng-reflect-ng-item-label='DigiCompany']")));
 		driver.findElement(By.xpath("//span[@ng-reflect-ng-item-label='DigiCompany']")).click();
-		driver.findElement(By.xpath("//*[@name='Password']")).sendKeys("Sneha@123");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//button[contains(@class,btn-primary)])[1]")).click();
-		
-		//HomePage
-		Thread.sleep(7000);
-		driver.findElement(By.xpath("//i[contains(@class,'openbtn')]")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.linkText("UPSI")).click();
-		Thread.sleep(4000);
-		driver.findElement(By.linkText("UPSI Details")).click();
-		Thread.sleep(4000);
-		driver.findElement(By.linkText("Add UPSI Details")).click();
-		WebElement text=driver.findElement(By.xpath("(//textarea[contains(@class,'ng-pristine')])[1]"));
-		text.sendKeys("Entered all the details");
-//		Thread.sleep(2000);
-//		driver.findElement(By.xpath("//input[@id='govevaUser1']")).click();
-//		Thread.sleep(3000);
-		
-		WebElement drop=driver.findElement(By.id("NatureId"));
-		Select cs=new Select(drop);
-		Thread.sleep(3000);
-		cs.selectByIndex(2);
-		
-		
-		Thread.sleep(2000);
-		
-		WebElement secondtext=driver.findElement(By.xpath("(//textarea[contains(@class,'form-control')])[2]"));
-		secondtext.sendKeys("filling this form by automation");
-		
-		WebElement thirdbox=driver.findElement(By.xpath("(//textarea[contains(@class,'form-control')])[4]"));
-		thirdbox.sendKeys("Automation testScript");
-		WebElement fourthbox=driver.findElement(By.xpath("(//textarea[contains(@class,'form-control')])[5]"));
-		fourthbox.sendKeys("Automation is a mode");
-		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@name='Password']")).sendKeys(password);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[contains(@class,btn-primary)])[1]"))).click();
 
-		driver.findElement(By.xpath("(//span[contains(@class,'fa-calendar')])[1]")).click();
+		// Navigating to UPSI details from Homepage
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'openbtn')]"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("UPSI"))).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("UPSI Details"))).click();
+
+		// Adding details to UPSI
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add UPSI Details")));
+		driver.findElement(By.linkText("Add UPSI Details")).click();
+
+		String Sharer = "Saish Khandare";
+		String SharerEmail = "saish.khandare@harriersys.com";
+		String Recipient = "Mr. Parikh sec";
+		String RecipientEmail = "test@test.in";
+		String UPSI_Nature = "Financial Audit";
+
+		// Adding Sharer
+		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='upsiSharer']/../label")).click();
+		AddingSharerAndRecipient(Sharer, SharerEmail, true);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='sharerNonGovevaUserList_filter']//input"))).sendKeys(SharerEmail);
+//		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), Sharer));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
+//		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
+
+		// Adding Recipient
+		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='govevaUser1']/../label")).click();
+		AddingSharerAndRecipient(Recipient, RecipientEmail, false);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='recipientNonGovevaUserList_filter']//input"))).sendKeys(RecipientEmail);
+//		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), Recipient));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
+//		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
 		
 		
-		Thread.sleep(2000);
-		driver.close();
-		
+		Select UPSI_Nature_dropdown = new Select(driver.findElement(By.id("NatureId")));
+		UPSI_Nature_dropdown.selectByVisibleText(UPSI_Nature);
+
+
+	}
+	
+
+	public static void AddingSharerAndRecipient(String name, String email, Boolean sender) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
+		if (sender) {
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='sharerNonGovevaUserList_filter']//input"))).sendKeys(email);
+		} else {
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='recipientNonGovevaUserList_filter']//input"))).sendKeys(email);
+		}
+		wait.until(ExpectedConditions.textToBe(By.xpath("//tbody/tr[1]/td[2]"), name));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='md-checkbox']/label)[1]"))).click();
+		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
 	}
 
 }
