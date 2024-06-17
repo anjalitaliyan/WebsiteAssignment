@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-18T00:24:40 IST" name="Default suite" finished-at="2024-06-18T00:25:15 IST" duration-ms="35173">
+  <suite started-at="2024-06-18T02:31:47 IST" name="Default suite" finished-at="2024-06-18T02:32:30 IST" duration-ms="43269">
     <groups>
     </groups>
-    <test started-at="2024-06-18T00:24:40 IST" name="Default test" finished-at="2024-06-18T00:25:15 IST" duration-ms="35173">
+    <test started-at="2024-06-18T02:31:47 IST" name="Default test" finished-at="2024-06-18T02:32:30 IST" duration-ms="43269">
       <class name="webSiteAuto.Assignment.UPSIAssignment">
-        <test-method is-config="true" signature="LaunchingApplication()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@1aafa419]" started-at="2024-06-18T00:24:40 IST" name="LaunchingApplication" finished-at="2024-06-18T00:24:53 IST" duration-ms="13090" status="PASS">
+        <test-method is-config="true" signature="LaunchingApplication()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@41d477ed]" started-at="2024-06-18T02:31:47 IST" name="LaunchingApplication" finished-at="2024-06-18T02:31:57 IST" duration-ms="9901" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LaunchingApplication -->
-        <test-method signature="LoginMethod()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@1aafa419]" started-at="2024-06-18T00:24:53 IST" name="LoginMethod" finished-at="2024-06-18T00:25:15 IST" duration-ms="22040" status="PASS">
+        <test-method signature="LoginMethod()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@41d477ed]" started-at="2024-06-18T02:31:57 IST" name="LoginMethod" finished-at="2024-06-18T02:32:30 IST" duration-ms="33330" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginMethod -->

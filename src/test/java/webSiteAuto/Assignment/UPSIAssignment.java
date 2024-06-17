@@ -1,10 +1,18 @@
 package webSiteAuto.Assignment;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Iterator;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+
 
 
 public class UPSIAssignment extends UtilClass
@@ -33,35 +41,54 @@ public class UPSIAssignment extends UtilClass
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Add UPSI Details")));
 		driver.findElement(By.linkText("Add UPSI Details")).click();
 
-		String Sharer = "Saish Khandare";
-		String SharerEmail = "saish.khandare@harriersys.com";
-		String Recipient = "Mr. Parikh sec";
-		String RecipientEmail = "test@test.in";
-		String UPSI_Nature = "Financial Audit";
-		String UPI_Details = "This is Financial Audit report";
-		String UPI_Purpose = "For acknowledgement";
-		String Sharing_Mode = "Shared via Email";
-		String Date_String = "08-Dec-2022";
-		String Time_String = "23:30";
+		// Fetching data from excel and executing test
+		try {
+			DataFormatter formatter = new DataFormatter();
+			FileInputStream fs = new FileInputStream(System.getProperty("user.dir")+ "/test_data.xlsx");
+			XSSFWorkbook workbook = new XSSFWorkbook(fs);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			Iterator<Row> rowIterator = sheet.iterator();
+			rowIterator.next();
+		    while (rowIterator.hasNext()) {
+		      Row row = rowIterator.next();
+		      if(row.getCell(0) == null) break;
+		      String Sharer = formatter.formatCellValue(row.getCell(0));
+		      String SharerEmail = formatter.formatCellValue(row.getCell(1));
+		      String Recipient = formatter.formatCellValue(row.getCell(2));
+		      String RecipientEmail = formatter.formatCellValue(row.getCell(3));
+		      String UPSI_Nature = formatter.formatCellValue(row.getCell(4));
+		      String UPSI_Details = formatter.formatCellValue(row.getCell(5));
+		      String UPSI_Purpose = formatter.formatCellValue(row.getCell(6));
+		      String Sharing_Mode = formatter.formatCellValue(row.getCell(7));
+		      String Date_String = formatter.formatCellValue(row.getCell(8));
+		      String Time_String = formatter.formatCellValue(row.getCell(9));
+		    
+		      Add_UPSI_Form_Data(Sharer, SharerEmail, Recipient, RecipientEmail, UPSI_Nature, UPSI_Details, UPSI_Purpose, Sharing_Mode, Date_String, Time_String);
+		    }
+		} catch (IOException e) {
+			System.out.println("Excel File not found");
+		}
 		
 		
-
+	}
+	
+	public static void Add_UPSI_Form_Data(String Sharer, String SharerEmail, String Recipient, String RecipientEmail, String UPSI_Nature, String UPSI_Details, String UPSI_Purpose, String Sharing_Mode, String Date_String, String Time_String) {
 		// Adding Sharer
-//		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='upsiSharer']/../label")).click();
-//		AddingSharerAndRecipient(Sharer, SharerEmail, true);
+		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='upsiSharer']/../label")).click();
+		AddingSharerAndRecipient(Sharer, SharerEmail, true);
 
 
 		// Adding Recipient
-//		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='govevaUser1']/../label")).click();
-//		AddingSharerAndRecipient(Recipient, RecipientEmail, false);	
-//		Select UPSI_Nature_dropdown = new Select(driver.findElement(By.id("NatureId")));
-//		UPSI_Nature_dropdown.selectByVisibleText(UPSI_Nature);
-		
+		driver.findElement(By.xpath("//div[@class='md-radio']/input[@id='govevaUser1']/../label")).click();
+		AddingSharerAndRecipient(Recipient, RecipientEmail, false);	
+		Select UPSI_Nature_dropdown = new Select(driver.findElement(By.id("NatureId")));
+		UPSI_Nature_dropdown.selectByVisibleText(UPSI_Nature);
+				
 		//Adding textbox details
-		driver.findElement(By.xpath("(//textarea[contains(@class, ng-pristine)])[1]")).sendKeys(UPI_Details);
-		driver.findElement(By.xpath("(//textarea[contains(@class, ng-pristine)])[2]")).sendKeys(UPI_Purpose);
-		driver.findElement(By.xpath("(//div//textarea[contains(@class, ng-pristine)])[3]")).sendKeys(Sharing_Mode);
-		
+		driver.findElement(By.xpath("(//textarea[contains(@class, ng-pristine)])[1]")).sendKeys(UPSI_Details);
+		driver.findElement(By.xpath("(//div/div/label[text()='Purpose for Sharing:']/../..//textarea)[1]")).sendKeys(UPSI_Purpose);
+		driver.findElement(By.xpath("(//div/div/label[text()='Purpose for Sharing:']/../..//textarea)[2]")).sendKeys(Sharing_Mode);
+				
 		// Handling Calender Dates
 		String[] date_temp = Date_String.split("-");
 		int date = Integer.parseInt(date_temp[0]);
@@ -75,7 +102,7 @@ public class UPSIAssignment extends UtilClass
 		Month_Dropdown.selectByVisibleText(month);
 		String date_select_xpath = "//ngb-datepicker//div[@class='btn-light' and text()='" + date + "']";
 		driver.findElement(By.xpath(date_select_xpath)).click();
-		
+				
 		// Handling Time input
 		String[] time_temp = Time_String.split(":");
 		String hour = time_temp[0];
@@ -86,7 +113,7 @@ public class UPSIAssignment extends UtilClass
 			hour = String.valueOf(Integer.parseInt(hour)-12);
 		}
 		driver.findElement(By.xpath("(//input[contains(@class,'timepicker-init')])[1]")).click();
-		
+				
 		WebElement am_pm_selector = driver.findElement(By.xpath("//button[@title='Toggle Period']"));
 		WebElement increment_hour = driver.findElement(By.xpath("//a[@title='Increment Hour']"));
 		WebElement increment_minute = driver.findElement(By.xpath("//a[@title='Increment Minute']"));
@@ -107,13 +134,7 @@ public class UPSIAssignment extends UtilClass
 				am_pm_selector.click();
 			}
 		}
-		
-		
-		
-
 	}
-	
-	
 	
 	public static void AddingSharerAndRecipient(String name, String email, Boolean sender) {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ngb-modal-window[@role='dialog']")));
@@ -127,6 +148,5 @@ public class UPSIAssignment extends UtilClass
 		driver.findElement(By.xpath("//ngb-modal-window//div[@class='modal-footer']/button[1]")).click();
 		
 	}
-	
 
 }
