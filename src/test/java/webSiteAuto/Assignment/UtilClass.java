@@ -14,13 +14,10 @@ public class UtilClass {
 	public static WebDriverWait wait;
 	public static WebDriver driver;
 	
-@BeforeMethod
+
 	public void LaunchingApplication() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driver.get("https://staging.digicompany.in/#/login");
-		driver.manage().window().maximize();
-		wait = new WebDriverWait(driver, Duration.ofSeconds(7));
-
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 }
