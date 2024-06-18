@@ -6,7 +6,9 @@
       <class name="webSiteAuto.Assignment.UPSIAssignment">
         <methods>
           <include name="LaunchingApplication"/>
-          <include name="LoginMethod"/>
+          <include name="Form"/>
+          <include name="UPSInavigation"/>
+          <include name="loginPage"/>
         </methods>
       </class> <!-- webSiteAuto.Assignment.UPSIAssignment -->
     </classes>

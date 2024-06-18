@@ -1,20 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="1" failed="1" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-18T02:31:47 IST" name="Default suite" finished-at="2024-06-18T02:32:30 IST" duration-ms="43269">
+  <suite started-at="2024-06-18T10:56:17 IST" name="Default suite" finished-at="2024-06-18T10:57:11 IST" duration-ms="53997">
     <groups>
     </groups>
-    <test started-at="2024-06-18T02:31:47 IST" name="Default test" finished-at="2024-06-18T02:32:30 IST" duration-ms="43269">
+    <test started-at="2024-06-18T10:56:17 IST" name="Default test" finished-at="2024-06-18T10:57:11 IST" duration-ms="53997">
       <class name="webSiteAuto.Assignment.UPSIAssignment">
-        <test-method is-config="true" signature="LaunchingApplication()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@41d477ed]" started-at="2024-06-18T02:31:47 IST" name="LaunchingApplication" finished-at="2024-06-18T02:31:57 IST" duration-ms="9901" status="PASS">
+        <test-method is-config="true" signature="LaunchingApplication()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@6892b3b6]" started-at="2024-06-18T10:56:17 IST" name="LaunchingApplication" finished-at="2024-06-18T10:56:41 IST" duration-ms="23743" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LaunchingApplication -->
-        <test-method signature="LoginMethod()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@41d477ed]" started-at="2024-06-18T02:31:57 IST" name="LoginMethod" finished-at="2024-06-18T02:32:30 IST" duration-ms="33330" status="PASS">
+        <test-method signature="loginPage()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@6892b3b6]" started-at="2024-06-18T10:56:41 IST" name="loginPage" finished-at="2024-06-18T10:56:42 IST" duration-ms="1568" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginMethod -->
+        </test-method> <!-- loginPage -->
+        <test-method is-config="true" signature="LaunchingApplication()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@6892b3b6]" started-at="2024-06-18T10:56:42 IST" name="LaunchingApplication" finished-at="2024-06-18T10:57:04 IST" duration-ms="21255" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchingApplication -->
+        <test-method signature="UPSInavigation()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@6892b3b6]" started-at="2024-06-18T10:57:04 IST" name="UPSInavigation" finished-at="2024-06-18T10:57:11 IST" depends-on-methods="webSiteAuto.Assignment.UPSIAssignment.loginPage" duration-ms="7335" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //i[contains(@class,'openbtn')] (tried for 7 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //i[contains(@class,'openbtn')] (tried for 7 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at webSiteAuto.Assignment.Navigate_UPSI_details.navigatingToUPSI(Navigate_UPSI_details.java:10)
+at webSiteAuto.Assignment.UPSIAssignment.UPSInavigation(UPSIAssignment.java:37)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//i[contains(@class,'openbtn')]"}
+  (Session info: chrome=125.0.6422.142)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [93113288f22d23d5a9315c59400cd0f7, findElement {value=//i[contains(@class,'openbtn')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 125.0.6422.142, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: C:\Users\prata\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52435}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52435/devtoo..., se:cdpVersion: 125.0.6422.142, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 93113288f22d23d5a9315c59400cd0f7
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 30 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UPSInavigation -->
+        <test-method signature="Form()[pri:0, instance:webSiteAuto.Assignment.UPSIAssignment@6892b3b6]" started-at="2024-06-18T10:57:11 IST" name="Form" finished-at="2024-06-18T10:57:11 IST" depends-on-methods="webSiteAuto.Assignment.UPSIAssignment.UPSInavigation" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method webSiteAuto.Assignment.UPSIAssignment.Form() on instance webSiteAuto.Assignment.UPSIAssignment@6892b3b6 depends on not successfully finished methods 
+[webSiteAuto.Assignment.UPSIAssignment.UPSInavigation() on instance webSiteAuto.Assignment.UPSIAssignment@6892b3b6]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method webSiteAuto.Assignment.UPSIAssignment.Form() on instance webSiteAuto.Assignment.UPSIAssignment@6892b3b6 depends on not successfully finished methods 
+[webSiteAuto.Assignment.UPSIAssignment.UPSInavigation() on instance webSiteAuto.Assignment.UPSIAssignment@6892b3b6]
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:159)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Form -->
       </class> <!-- webSiteAuto.Assignment.UPSIAssignment -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
